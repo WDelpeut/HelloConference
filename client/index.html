@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Olympics</title>
+    <script src="../node_modules/angular/angular.js"></script>
+</head>
+<body ng-app="helloConference">
+<h1>Hello Conference</h1>
+<ul ng-controller="eventsController as eventsCtrl">
+    <li ng-repeat="event in eventsCtrl.events">{{ event }}</li>
+</ul>
+
+<script type="text/javascript" src="app.js"></script>
+</body>
+</html>

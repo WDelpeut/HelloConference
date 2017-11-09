@@ -1,0 +1,10 @@
+{
+  "name": "HelloConference",
+  "version": "0.0.1",
+  "repository": "https://github.com/WDELPEUT/HelloConference",
+  "author": "Wesley Delpeut <wesleydelpeut@gmail.com>",
+  "dependencies": {
+    "angular": "^1.6.6",
+    "express": "^4.16.2"
+  }
+}

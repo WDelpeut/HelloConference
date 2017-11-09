@@ -21,10 +21,14 @@ app.get('/events', (request, response) => {
     let events = mongoUtil.events();
     events.find().toArray((err, docs) => {
        console.log(JSON.stringify(docs));
+        /*
+             Returns the name of the results individually (in an array).
+             This argument of the map function is the short version of the arrow function and returns for every
+             element in the collection its name.
+         */
        let eventNames = docs.map((event) => event.name);
        response.json(eventNames);
     });
-    // response.json(['Polymer Summit', 'The Next Web']);
 });
 
 app.listen(8181, () => {

@@ -1,20 +1,30 @@
 'use strict';
 let express = require('express');
 let app = express();
+let mongoUtil = require('./mongoUtil')
+
+mongoUtil.connect();
 
 /*
-    This is mounting middleware: static (is build in express core).
+    This is mounting middleware in express: static (build in express core).
     Argument is the directory express will read files from and serve those static files.
     Express automatically looks for index.html as your root file.
+    __dirname stands for current directory that we're on, our server (localhost).
 */
 app.use(express.static(__dirname + '/../'));
 
 /*
-    Create end point
-    Test end point using curl: curl -i localhost:8181/events
+    Create end-point
+    Test end-point using curl: curl -i localhost:8181/events
  */
 app.get('/events', (request, response) => {
-   response.json(['Polymer Summit', 'The Next Web']);
+    let events = mongoUtil.events();
+    events.find().toArray((err, docs) => {
+       console.log(JSON.stringify(docs));
+       let eventNames = docs.map((event) => event.name);
+       response.json(eventNames);
+    });
+    // response.json(['Polymer Summit', 'The Next Web']);
 });
 
 app.listen(8181, () => {

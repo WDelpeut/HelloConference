@@ -5,6 +5,7 @@
   "author": "Wesley Delpeut <wesleydelpeut@gmail.com>",
   "dependencies": {
     "angular": "^1.6.6",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33"
   }
 }

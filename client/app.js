@@ -1,3 +1,6 @@
+'use strict';
+import angular from 'angular';
+
 angular.module('helloConference', [])
 .controller('eventsController', function($http) {
     /*

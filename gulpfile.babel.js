@@ -1,15 +1,13 @@
-'use strict';
-
-const gulp = require('gulp');
-const browserify = require('browserify');
-const source = require('vinyl-source-stream');
-const buffer = require('vinyl-buffer');
-const globby = require('globby');
-const through = require('through2');
-const log = require('gulplog');
-const uglify = require('gulp-uglify');
-const sourcemaps = require('gulp-sourcemaps');
-const babelify = require('babelify');
+import gulp from 'gulp';
+import browserify from 'browserify';
+import source from 'vinyl-source-stream';
+import buffer from 'vinyl-buffer';
+import globby from 'globby';
+import through from 'through2';
+import log from 'gulplog';
+import uglify from 'gulp-uglify';
+import sourcemaps from 'gulp-sourcemaps';
+import babelify from 'babelify';
 
 gulp.task('build', function () {
   // gulp expects tasks to return a stream, so we create one here.
@@ -27,7 +25,7 @@ gulp.task('build', function () {
     .pipe(uglify())
     .on('error', log.error)
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('./client/dist'));
 
   // "globby" replaces the normal "gulp.src" as Browserify
   // creates it's own readable stream.

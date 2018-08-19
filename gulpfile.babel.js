@@ -1,50 +1,46 @@
 import gulp from 'gulp';
+import watchify from 'watchify';
 import browserify from 'browserify';
 import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
-import globby from 'globby';
-import through from 'through2';
 import log from 'gulplog';
 import uglify from 'gulp-uglify';
 import sourcemaps from 'gulp-sourcemaps';
 import babelify from 'babelify';
+import assign from 'lodash.assign';
 
-gulp.task('build', function () {
-  // gulp expects tasks to return a stream, so we create one here.
-  var bundledStream = through();
+const customOpts = {
+  entries: './client/app.js',
+  debug: true,
+  transform: [[babelify, { "presets": ["env"] }]]
+}
+const opts = assign({}, watchify.args, customOpts);
+// create Browserify instance.
+const b = browserify(customOpts);
+// create Browserify/Watchify instance.
+const bwatch = watchify(browserify(opts));
 
-  bundledStream
-    // turns the output bundle stream into a stream containing
-    // the normal attributes gulp plugins expect.
+gulp.task('watch', () => {
+  bundle(bwatch);
+  bwatch.on('update', () => {bundle(bwatch)});
+  bwatch.on('log', log.info);
+});
+
+gulp.task('build', () => {
+  return bundle(b);
+});
+
+const bundle = (instance) => {
+  return instance.bundle()
+    .on('error', log.error.bind(log, 'Browserify Error'))
     .pipe(source('bundle.js'))
-    // the rest of the gulp task, as you would normally write it.
-    // here we're copying from the Browserify + Uglify2 recipe.
+    // optional, remove if you don't need to buffer file contents
     .pipe(buffer())
-    .pipe(sourcemaps.init({ loadMaps: true }))
+    // optional, remove if you dont want sourcemaps
+    .pipe(sourcemaps.init({loadMaps: true}))
     // Add gulp plugins to the pipeline here.
     .pipe(uglify())
     .on('error', log.error)
-    .pipe(sourcemaps.write('./'))
+    .pipe(sourcemaps.write('./')) // writes .map file
     .pipe(gulp.dest('./client/dist'));
-
-  // "globby" replaces the normal "gulp.src" as Browserify
-  // creates it's own readable stream.
-  globby(['./client/*.js']).then(function (entries) {
-    // create the Browserify instance.
-    var b = browserify({
-      entries: entries,
-      debug: true,
-      transform: [[babelify, { "presets": ["env"] }]]
-    });
-
-    // pipe the Browserify stream into the stream we created earlier
-    // this starts our gulp pipeline.
-    b.bundle().pipe(bundledStream);
-  }).catch(function (err) {
-    // ensure any errors from globby are handled
-    bundledStream.emit('error', err);
-  });
-
-  // finally, we return the stream, so gulp knows when this task is done.
-  return bundledStream;
-});
+}

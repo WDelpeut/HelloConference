@@ -4,8 +4,8 @@ import angular from 'angular';
 
 angular.module('helloConference', [])
 .controller('eventsController', function($http) {
-    // Step 1: Static list of events
-    // this.events = ["Angular Cruise", "Road to React"];
+    // static data in front end application
+    // this.events = ["Frontend Developer Love 2019", "VueJS Amsterdam 2019"];
 
     /*
         Only '/events' is needed because the javaScript file is served from our server, localhost, so whatever path

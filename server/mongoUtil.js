@@ -1,4 +1,4 @@
-"use strict"
+'use strict'
 
 let mongo = require('mongodb');
 let client = mongo.MongoClient;

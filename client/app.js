@@ -1,8 +1,18 @@
 'use strict';
 
 import angular from 'angular';
+import uiRouter from 'angular-ui-router' ;
 
-angular.module('helloConference', [])
+angular.module('helloConference', [uiRouter])
+.config(($stateProvider, $urlRouterProvider) => {
+    $urlRouterProvider.otherwise('/events')
+
+    $stateProvider
+    .state('events', {
+        url:'/events',
+        templateUrl: 'events/events-nav.html'
+    })
+})
 .controller('eventsController', function($http) {
     // static data in front end application
     // this.events = ["Frontend Developer Love 2019", "VueJS Amsterdam 2019"];

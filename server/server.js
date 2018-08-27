@@ -19,7 +19,7 @@ app.get('/events', (request, response) => {
 
     let events = mongoUtil.events();
     events.find().toArray((err, docs) => {
-       console.log(JSON.stringify(docs));
+    //    console.log(JSON.stringify(docs));
        let eventNames = docs.map((event) => event.name);
        response.json(eventNames);
     });

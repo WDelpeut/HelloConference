@@ -25,6 +25,35 @@ app.get('/events', (request, response) => {
     });
 });
 
+app.get('/events/:eventName', (request, response) => {
+    let eventName = request.params.eventName;
+    console.log('Event name: ' + eventName);
+    let event = {
+    "name": "VueJS Amsterdam 2019",
+    "date": [
+        "2019-02-14",
+        "2019-02-15"
+    ],
+    "address": {
+        "country": "the Netherlands",
+        "city": "Amsterdam",
+        "postal-code": "1013AP",
+        "streetAddress": "Danzigerkade 5"
+    },
+    "venue": "Theater Amsterdam",
+    "URL": "https://www.vuejs.amsterdam/",
+    "topics": [
+        "vue"
+    ],
+    "speakers": [
+        "Evan You",
+        "Sara Vieira",
+        "Filipa Lacerda",
+        "Jen Looper"
+    ]}
+    response.json(event);
+});
+
 app.listen(3000, () => {
     console.log('Listening on port 3000...');
 });

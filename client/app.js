@@ -1,7 +1,7 @@
 'use strict';
 
 import angular from 'angular';
-import uiRouter from 'angular-ui-router' ;
+import uiRouter from 'angular-ui-router'; 
 
 angular.module('helloConference', [uiRouter])
 .config(($stateProvider, $urlRouterProvider) => {
@@ -10,20 +10,56 @@ angular.module('helloConference', [uiRouter])
     $stateProvider
     .state('events', {
         url:'/events',
-        templateUrl: 'events/events-nav.html'
+        templateUrl: 'events/events-nav.html',
+        resolve: {
+            // Don't load the template until you've resolved what's inside here. (To avoid blinking empty brackes blinking)
+            eventsService: function($http) {
+                return $http.get('/events');
+            }
+        },
+        controller: function(eventsService) {
+            this.events = eventsService.data;
+        },
+        controllerAs: 'eventsCtrl'
+    })
+    .state('events.details', {
+        url: '/:eventName',
+        templateUrl: 'events/events-details.html',
+        resolve: {
+            // $q is Angular's imlementation of a promise
+            eventService: function($q) {
+                return $q((resolve, reject) => {
+                    let event = {
+                        "name": "VueJS Amsterdam 2019",
+                        "date": [
+                          "2019-02-14",
+                          "2019-02-15"
+                        ],
+                        "address": {
+                          "country": "the Netherlands",
+                          "city": "Amsterdam",
+                          "postal-code": "1013AP",
+                          "streetAddress": "Danzigerkade 5"
+                        },
+                        "venue": "Theater Amsterdam",
+                        "URL": "https://www.vuejs.amsterdam/",
+                        "topics": [
+                          "vue"
+                        ],
+                        "speakers": [
+                          "Evan You",
+                          "Sara Vieira",
+                          "Filipa Lacerda",
+                          "Jen Looper"
+                        ]
+                    }
+                    resolve({data: event});
+                })
+            }
+        },
+        controller: function(eventService) {
+            this.event = eventService.data;
+        },
+        controllerAs: 'eventCtrl'
     })
 })
-.controller('eventsController', function($http) {
-    // static data in front end application
-    // this.events = ["Frontend Developer Love 2019", "VueJS Amsterdam 2019"];
-
-    /*
-        Only '/events' is needed because the javaScript file is served from our server, localhost, so whatever path
-        is given to te http.get call, it's going to append that path to the current url.
-        The arrow function gives a lexical scope, meaning it binds to function to where it was defined. In this case in the
-        controller and not where it is called from.
-    */
-    $http.get('/events').then((response) => {
-        this.events = response.data;
-    });
-});

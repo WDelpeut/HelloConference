@@ -1,0 +1,35 @@
+<h3>{{ eventCtrl.event.name }}</h3>
+
+<table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Topic</th>
+        <th>Date</th>
+        <th>URL</th>
+        <th>Speakers</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ eventCtrl.event.name }}</td>
+        <td>
+          <p ng-repeat="topic in eventCtrl.event.topics">{{ topic }}</p>
+        </td>
+        <td>
+          <p ng-repeat="date in eventCtrl.event.date">{{ date }}</p></td>
+        <td>{{ eventCtrl.event.URL }}</td>
+        <td>
+          <p ng-repeat="speaker in eventCtrl.event.speakers">{{ speaker }}</p>
+        </td>
+        <td>
+          <p><strong>Country:</strong> {{ eventCtrl.event.address.country }}</p>
+          <p><strong>City:</strong> {{ eventCtrl.event.address.city }}</p>
+          <p><strong>Postal-code:</strong> {{ eventCtrl.event.address.postalCode }}</p>
+          <p><strong>Street address:</strong> {{ eventCtrl.event.address.streetAddress }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

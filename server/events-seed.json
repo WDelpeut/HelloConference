@@ -9,7 +9,7 @@
       "address": {
         "country": "the Netherlands",
         "city": "Amsterdam",
-        "postal-code": "1013AP",
+        "postalCode": "1013AP",
         "streetAddress": "Danzigerkade 5"
       },
       "venue": "Theater Amsterdam",
@@ -34,7 +34,7 @@
       "address": {
         "country": "the Netherlands",
         "city": "Amsterdam",
-        "postal-code": "1013AP",
+        "postalCode": "1013AP",
         "streetAddress": "Danzigerkade 5"
       },
       "venue": "Theater Amsterdam",

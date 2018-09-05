@@ -20,6 +20,9 @@ app.get('/events', (request, response) => {
   let events = mongoUtil.events();
   events.find().toArray((err, docs) => {
     //    console.log(JSON.stringify(docs));
+    if(err) {
+      response.sendStatus(400);
+    }
     let eventNames = docs.map((event) => event.name);
     response.json(eventNames);
   });
@@ -27,32 +30,13 @@ app.get('/events', (request, response) => {
 
 app.get('/events/:eventName', (request, response) => {
   let eventName = request.params.eventName;
-  console.log('Event name: ' + eventName);
-  let event = {
-    "name": "VueJS Amsterdam 2019",
-    "date": [
-      "2019-02-14",
-      "2019-02-15"
-    ],
-    "address": {
-      "country": "the Netherlands",
-      "city": "Amsterdam",
-      "postal-code": "1013AP",
-      "streetAddress": "Danzigerkade 5"
-    },
-    "venue": "Theater Amsterdam",
-    "URL": "https://www.vuejs.amsterdam/",
-    "topics": [
-      "vue"
-    ],
-    "speakers": [
-      "Evan You",
-      "Sara Vieira",
-      "Filipa Lacerda",
-      "Jen Looper"
-    ]
-  }
-  response.json(event);
+  let events = mongoUtil.events();
+  events.find({name: eventName}).limit(1).next((err, doc) => {
+    if(err) {
+      response.sendStatus(400);
+    }
+    response.json(doc);
+  })
 });
 
 app.listen(3000, () => {

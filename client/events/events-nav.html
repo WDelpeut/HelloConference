@@ -1,7 +1,7 @@
-<ul>
-  <li ng-repeat="event in eventsCtrl.events">
+<ul class="nav">
+  <li class="nav-item" ng-repeat="event in eventsCtrl.events">
     <!-- Because we use angular-ui-router, we use ui-sref for navigation through states -->
-    <a ui-sref="events.details({eventName: event})">{{ event }}</a>
+    <a class="nav-link" ui-sref="events.details({eventName: event})">{{ event }}</a>
   </li>
 </ul>
 

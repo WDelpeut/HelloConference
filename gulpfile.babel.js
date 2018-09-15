@@ -8,6 +8,7 @@ import uglify from 'gulp-uglify';
 import sourcemaps from 'gulp-sourcemaps';
 import babelify from 'babelify';
 import assign from 'lodash.assign';
+import sass from 'gulp-sass';
 
 const customOpts = {
   entries: './client/app.js',
@@ -15,21 +16,8 @@ const customOpts = {
   transform: [[babelify, { "presets": ["env"] }]]
 }
 const opts = assign({}, watchify.args, customOpts);
-// create Browserify instance.
 const b = browserify(customOpts);
-// create Browserify/Watchify instance.
-const bwatch = watchify(browserify(opts));
-
-gulp.task('watch', () => {
-  bundle(bwatch);
-  bwatch.on('update', () => {bundle(bwatch)});
-  bwatch.on('log', log.info);
-});
-
-gulp.task('build', () => {
-  return bundle(b);
-});
-
+const bw = watchify(browserify(opts));
 const bundle = (instance) => {
   return instance.bundle()
     .on('error', log.error.bind(log, 'Browserify Error'))
@@ -44,3 +32,25 @@ const bundle = (instance) => {
     .pipe(sourcemaps.write('./')) // writes .map file
     .pipe(gulp.dest('./client/dist'));
 }
+
+gulp.task('watch', () => {
+  bundle(bw);
+  gulp.start('sass');
+  gulp.start('sass:watch');
+  bw.on('update', () => {bundle(bw)});
+  bw.on('log', log.info);
+});
+
+gulp.task('build', () => {
+  return bundle(b);
+});
+
+gulp.task('sass', function () {
+  return gulp.src('./client/sass/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./client/dist'));
+});
+ 
+gulp.task('sass:watch', function () {
+  gulp.watch('./client/sass/**/*.scss', ['sass']);
+});

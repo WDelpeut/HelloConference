@@ -42,6 +42,7 @@ gulp.task('watch', () => {
 });
 
 gulp.task('build', () => {
+  gulp.start('sass');
   return bundle(b);
 });
 

@@ -1,0 +1,49 @@
+<form ng-submit="newEventCtrl.saveEvent(event)" name="newEventForm">
+  <h3>New Event</h3>
+  <div> 
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="eventName" ng-model="event.name" required>
+  </div>
+  <div>
+    <label for="date">Date:</label>
+    <input type="text" id="date" name="eventDate" ng-model="event.date" required>
+  </div>
+  <div>
+    <label for="country">Country:</label>
+    <input type="text" id="country" name="eventCountry" ng-model="event.address.country" required>
+  </div>
+  <div>
+    <label for="city">City:</label>
+    <input type="text" id="city" name="eventCity" ng-model="event.address.city" required>
+  </div>  
+  <div>
+    <label for="postal-code">Postal code:</label>
+    <input type="text" id="postal-code" name="eventPostalCode" ng-model="event.address.postalCode" required>
+  </div>
+  <div>
+    <label for="street-address">Street Address:</label>
+    <input type="text" id="street-address" name="eventStreetAddress" ng-model="event.streetAdress" required>
+  </div>  
+  <div>
+    <label for="venue">Venue:</label>
+    <input type="text" id="venue" name="eventVenue" ng-model="event.venue">
+  </div>
+  <div>
+    <label for="url">Website:</label>
+    <input type="url" id="url" name="eventURL" ng-model="event.URL" required>
+  </div>
+  <div>
+    <label for="topics">Topics:</label>
+    <select multiple id="topics" name="eventTopics" ng-model="event.topics">
+      <option>Vue</option>
+      <option>JavaScript</option>
+    </select>
+  </div>
+  <div>
+    <label for="speakers">Speakers</label>
+    <input type="text" id="speakers" name="eventSpeakers" ng-model="event.speakers">
+  </div>
+
+  <button type="submit">Create event</button>
+
+</form>

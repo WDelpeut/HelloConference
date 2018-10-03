@@ -2,6 +2,8 @@
 let express = require('express');
 let app = express();
 let mongoUtil = require('./mongoUtil');
+let bodyParser = require('body-parser');
+let jsonParser = bodyParser.json();
 
 mongoUtil.connect();
 
@@ -28,6 +30,16 @@ app.get('/events', (request, response) => {
   });
 });
 
+// We add jsonParser as middleware. This middel ware will be run before the handler has run.
+app.post('/events', jsonParser, (request, response) => {
+  let newEvent =  request.body.name;
+  
+  console.log('event: ' + newEvent);
+
+  response.sendStatus(201); 
+});
+
+
 app.get('/events/:eventName', (request, response) => {
   let eventName = request.params.eventName;
   let events = mongoUtil.events();
@@ -38,6 +50,7 @@ app.get('/events/:eventName', (request, response) => {
     response.json(doc);
   })
 });
+
 
 app.listen(3000, () => {
   console.log('Listening on port 3000...');

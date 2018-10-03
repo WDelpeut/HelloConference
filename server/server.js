@@ -32,10 +32,11 @@ app.get('/events', (request, response) => {
 
 // We add jsonParser as middleware. This middel ware will be run before the handler has run.
 app.post('/events', jsonParser, (request, response) => {
-  let newEvent =  request.body.name;
-  
-  console.log('event: ' + newEvent);
+  let newEvent =  request.body;
+  let events = mongoUtil.events();
 
+  events.insertOne(newEvent);
+  
   response.sendStatus(201); 
 });
 

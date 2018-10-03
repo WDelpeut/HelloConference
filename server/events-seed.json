@@ -1,53 +1,51 @@
-{
-  "events": [
-    {
-      "name": "VueJS Amsterdam 2019",
-      "date": [
-        "2019-02-14",
-        "2019-02-15"
-      ],
-      "address": {
-        "country": "the Netherlands",
-        "city": "Amsterdam",
-        "postalCode": "1013AP",
-        "streetAddress": "Danzigerkade 5"
-      },
-      "venue": "Theater Amsterdam",
-      "URL": "https://www.vuejs.amsterdam/",
-      "topics": [
-        "vue"
-      ],
-      "speakers": [
-        "Evan You",
-        "Sara Vieira",
-        "Filipa Lacerda",
-        "Jen Looper"
-      ]
+[
+  {
+    "name": "VueJS Amsterdam 2019",
+    "date": [
+      "2019-02-14",
+      "2019-02-15"
+    ],
+    "address": {
+      "country": "the Netherlands",
+      "city": "Amsterdam",
+      "postalCode": "1013AP",
+      "streetAddress": "Danzigerkade 5"
     },
-    {
-      "name": "Frontend Developer Love 2019",
-      "date": [
-        "2019-02-13",
-        "2019-02-14",
-        "2019-02-15"
-      ],
-      "address": {
-        "country": "the Netherlands",
-        "city": "Amsterdam",
-        "postalCode": "1013AP",
-        "streetAddress": "Danzigerkade 5"
-      },
-      "venue": "Theater Amsterdam",
-      "URL": "https://www.frontenddeveloperlove.com/",
-      "topics": [
-        "javascript"
-      ],
-      "speakers": [
-        "Evan You",
-        "Jen Looper",
-        "Sara Vieira",
-        "Jeremy Keith"
-      ]
-    }
-  ]
-}
+    "venue": "Theater Amsterdam",
+    "URL": "https://www.vuejs.amsterdam/",
+    "topics": [
+      "vue"
+    ],
+    "speakers": [
+      "Evan You",
+      "Sara Vieira",
+      "Filipa Lacerda",
+      "Jen Looper"
+    ]
+  },
+  {
+    "name": "Frontend Developer Love 2019",
+    "date": [
+      "2019-02-13",
+      "2019-02-14",
+      "2019-02-15"
+    ],
+    "address": {
+      "country": "the Netherlands",
+      "city": "Amsterdam",
+      "postalCode": "1013AP",
+      "streetAddress": "Danzigerkade 5"
+    },
+    "venue": "Theater Amsterdam",
+    "URL": "https://www.frontenddeveloperlove.com/",
+    "topics": [
+      "javascript"
+    ],
+    "speakers": [
+      "Evan You",
+      "Jen Looper",
+      "Sara Vieira",
+      "Jeremy Keith"
+    ]
+  }
+]

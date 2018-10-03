@@ -35,8 +35,10 @@ app.post('/events', jsonParser, (request, response) => {
   let newEvent =  request.body;
   let events = mongoUtil.events();
 
+  console.log('Event name: ' + request.body.name);
+
   events.insertOne(newEvent);
-  
+
   response.sendStatus(201); 
 });
 

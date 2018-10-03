@@ -38,10 +38,12 @@ angular.module('helloConference', [uiRouter])
       .state('events.new', {
         url: '/new',
         templateUrl: 'events/new-event.html',
-        controller: function($state) {
+        controller: function($state, $http) {
           this.saveEvent = (event) => {
             console.log('event: ', event);
-            $state.go('events');
+            $http.post('/events', event).then(function() {
+              $state.go('events');
+            })
           }
         },
         controllerAs: 'newEventCtrl'

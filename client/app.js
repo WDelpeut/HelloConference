@@ -3,7 +3,7 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 
-angular.module('helloConference', [uiRouter])
+angular.module('meanProject', [uiRouter])
   .config(($stateProvider, $urlRouterProvider) => {
     $urlRouterProvider.otherwise('/events')
 

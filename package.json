@@ -1,7 +1,7 @@
 {
-  "name": "hello-conference",
+  "name": "mean-project",
   "version": "0.0.1",
-  "repository": "https://github.com/WDELPEUT/HelloConference",
+  "repository": "https://github.com/WDELPEUT/MEANProject",
   "author": "Wesley Delpeut <wesleydelpeut@gmail.com>",
   "dependencies": {
     "angular": "^1.6.6",

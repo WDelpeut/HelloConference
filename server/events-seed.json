@@ -1,51 +1,89 @@
 [
   {
-    "name": "VueJS Amsterdam 2019",
-    "date": [
-      "2019-02-14",
-      "2019-02-15"
-    ],
-    "address": {
-      "country": "the Netherlands",
-      "city": "Amsterdam",
-      "postalCode": "1013AP",
-      "streetAddress": "Danzigerkade 5"
-    },
-    "venue": "Theater Amsterdam",
-    "URL": "https://www.vuejs.amsterdam/",
-    "topics": [
-      "vue"
-    ],
-    "speakers": [
-      "Evan You",
-      "Sara Vieira",
-      "Filipa Lacerda",
-      "Jen Looper"
+    "category": "frontend",
+    "events": [
+      {
+        "name": "VueJS Amsterdam 2019",
+        "date": [
+          "2019-02-14",
+          "2019-02-15"
+        ],
+        "address": {
+          "country": "the Netherlands",
+          "city": "Amsterdam",
+          "postalCode": "1013AP",
+          "streetAddress": "Danzigerkade 5"
+        },
+        "venue": "Theater Amsterdam",
+        "URL": "https://www.vuejs.amsterdam/",
+        "topics": [
+          "vue"
+        ],
+        "speakers": [
+          "Evan You",
+          "Sara Vieira",
+          "Filipa Lacerda",
+          "Jen Looper"
+        ]
+      },
+      {
+        "name": "Frontend Developer Love 2019",
+        "date": [
+          "2019-02-13",
+          "2019-02-14",
+          "2019-02-15"
+        ],
+        "address": {
+          "country": "the Netherlands",
+          "city": "Amsterdam",
+          "postalCode": "1013AP",
+          "streetAddress": "Danzigerkade 5"
+        },
+        "venue": "Theater Amsterdam",
+        "URL": "https://www.frontenddeveloperlove.com/",
+        "topics": [
+          "javascript"
+        ],
+        "speakers": [
+          "Evan You",
+          "Jen Looper",
+          "Sara Vieira",
+          "Jeremy Keith"
+        ]
+      }
     ]
   },
   {
-    "name": "Frontend Developer Love 2019",
-    "date": [
-      "2019-02-13",
-      "2019-02-14",
-      "2019-02-15"
-    ],
-    "address": {
-      "country": "the Netherlands",
-      "city": "Amsterdam",
-      "postalCode": "1013AP",
-      "streetAddress": "Danzigerkade 5"
-    },
-    "venue": "Theater Amsterdam",
-    "URL": "https://www.frontenddeveloperlove.com/",
-    "topics": [
-      "javascript"
-    ],
-    "speakers": [
-      "Evan You",
-      "Jen Looper",
-      "Sara Vieira",
-      "Jeremy Keith"
+    "category": "backend",
+    "events":[
+      {
+        "name": "Devoxx Belgium 2018",
+        "date": [
+          "2018-11-12",
+          "2018-11-13",
+          "2018-11-14",
+          "2018-11-15",
+          "2018-11-16"
+        ],
+        "address": {
+          "country": "Belgium",
+          "city": "Antwerp",
+          "postalCode": "2030",
+          "streetAddress": "Groenendaallaan 394"
+        },
+        "venue": "Kinepolis Antwerp",
+        "URL": "https://devoxx.be/",
+        "topics": [
+          "java",
+          "cloud",
+          "iot"
+        ],
+        "speakers": [
+          "Stephan Janssen",
+          "Mark Reinhold",
+          "Venkat Subramaniam"
+        ]
+      }
     ]
   }
 ]

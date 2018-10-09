@@ -15,21 +15,29 @@ mongoUtil.connect();
 */
 app.use(express.static(__dirname + '/../client'));
 
-app.get('/events', (request, response) => {
+app.get('/categories', (request, response) => {
   let events = mongoUtil.events();
   events.find().toArray((err, docs) => {
-    // console.log(JSON.stringify(docs));
     if(err) {
       response.sendStatus(400);
     }
-    let eventNames = [];
+    let categories = [];
     for(let i = 0; i < docs.length; i++) {
-      for(let j = 0; j < docs[i].events.length; j++) {
-        eventNames.push(docs[i].events[j].name);
-      }
+      categories.push(docs[i].category);
     }
-    response.json(eventNames);
-  });
+    response.json(categories);
+  })
+})
+
+app.get('/categories/:categoryName', (request, response) => {
+  let categoryName = request.params.categoryName;
+  let events = mongoUtil.events();
+  events.find({category: categoryName}).limit(1).next((err, doc) => {
+    if(err) {
+      response.sendStatus(400);
+    }
+    response.json(doc);
+  })
 });
 
 // We add jsonParser as middleware. This middelware will be run before the handler has run.
@@ -43,10 +51,11 @@ app.post('/events', jsonParser, (request, response) => {
 });
 
 
-app.get('/events/:eventName', (request, response) => {
-  let eventName = request.params.eventName;
+app.get('/categories/:categoryName/:eventName', (request, response) => {
+  let categoryName = request.params.categoryName;
   let events = mongoUtil.events();
-  events.find({name: eventName}).limit(1).next((err, doc) => {
+  // TODO: find out how to query for an object that is located in the array of an object in a collection
+  events.find({category: categoryName}).limit(1).next((err, doc) => {
     if(err) {
       response.sendStatus(400);
     }

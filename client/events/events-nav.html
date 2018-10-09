@@ -1,7 +1,7 @@
 <ul class="event-list">
   <li class="card" ng-repeat="event in eventsCtrl.events">
     <div class="card-body">
-        <a class="card-title" ui-sref="events.details({eventName: event})">{{ event }}</a>
+        <a class="card-title" ui-sref="categories.events.details({eventName: event.name})">{{ event.name }}</a>
     </div>
   </li>
 </ul>

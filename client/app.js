@@ -5,33 +5,48 @@ import uiRouter from 'angular-ui-router';
 
 angular.module('meanProject', [uiRouter])
   .config(($stateProvider, $urlRouterProvider) => {
-    $urlRouterProvider.otherwise('/events')
+    $urlRouterProvider.otherwise('/home')
 
     $stateProvider
-      .state('events', {
-        url: '/events',
-        templateUrl: 'events/events-nav.html',
+      .state('categories', {
+        url: '/home',
+        templateUrl: 'events/page-nav.html',
         resolve: {
-          // Don't load the template until you've resolved what's inside here. (To avoid blinking empty brackes blinking)
-          eventsService: function ($http) {
-            return $http.get('/events');
+          eventsService: function($http) {
+            return $http.get('/categories');
           }
         },
-        controller: function (eventsService) {
-          this.events = eventsService.data;
+        controller: function(eventsService) {
+          this.categories = eventsService.data;
         },
         controllerAs: 'eventsCtrl'
       })
-      .state('events.details', {
+      .state('categories.events', {
+        url: '/:categoryName',
+        templateUrl: 'events/events-nav.html',
+        resolve: {
+          // Don't load the template until you've resolved what's inside here. (To avoid blinking empty brackes blinking)
+          eventsService: function($http, $stateParams) {
+            return $http.get('/categories/' + $stateParams.categoryName)
+          }
+        },
+        controller: function (eventsService) {
+          this.categoryName = eventsService.data.category;
+          this.events = eventsService.data.events;
+        },
+        controllerAs: 'eventsCtrl'
+      })
+      .state('categories.events.details', {
         url: '/:eventName',
         templateUrl: 'events/events-details.html',
         resolve: {
           eventService: function ($http, $stateParams) {
-            return $http.get('/events/' + $stateParams.eventName)
+            return $http.get('categories/'  + $stateParams.categoryName + '/' +  + $stateParams.eventName)
           }
         },
-        controller: function (eventService) {
-          this.event = eventService.data;
+        controller: function (eventService, $stateParams) {
+          let events = eventService.data.events;
+          this.event = events.find(event => event.name === $stateParams.eventName);
         },
         controllerAs: 'eventCtrl'
       })

@@ -11,7 +11,7 @@ import assign from 'lodash.assign';
 import sass from 'gulp-sass';
 
 const customOpts = {
-  entries: ['./client/app.js', './node_modules/bootstrap/dist/js/bootstrap.min.js'],
+  entries: ['./client/app.js'],
   debug: true,
   transform: [[babelify, { "presets": ["env"] }]]
 }

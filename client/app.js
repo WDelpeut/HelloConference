@@ -2,8 +2,9 @@
 
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import uiBootstrap from 'ui-bootstrap4';
 
-angular.module('meanProject', [uiRouter])
+angular.module('meanProject', [uiRouter, uiBootstrap])
   .config(($stateProvider, $urlRouterProvider) => {
     $urlRouterProvider.otherwise('/home')
 

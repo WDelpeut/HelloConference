@@ -1,3 +1,6 @@
+// ui-bootsrap 4 css fix for pointers
+.nav, .pagination, .carousel, .card-title a { cursor: pointer; }
+
 .event-list {
   padding-left: 0;
 }
